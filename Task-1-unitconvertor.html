@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Unit Converter</title>
+	<style>
+		body {
+			font-family: sans-serif;
+            background: cyan;
+		}
+		label {
+			display: block;
+			margin-bottom: 10px;
+		}
+		input[type="number"] {
+			width: 100px;
+			padding: 5px;
+			border-radius: 3px;
+			border: 1px solid #ccc;
+		}
+		button {
+			padding: 10px;
+			border-radius: 3px;
+			background-color: #007bff;
+			color: #fff;
+			border: none;
+			cursor: pointer;
+		}
+		.result {
+			margin-top: 20px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+    <center>	<h1>Unit Converter</h1>
+    </center>
+<br>
+<br>
+	<center><label>Enter the value to convert:</label></center>
+<center>
+<input type="number" id="valueToConvert"></center>
+<center>
+<br>
+	<label>Select the unit to convert from:</label>
+
+	<select id="fromUnit">
+		<option value="inches">Inches</option>
+		<option value="feet">Feet</option>
+		<option value="yards">Yards</option>
+	</select></center>
+<br>
+<center>
+
+	<label>Select the unit to convert to:</label></center>
+<center>
+
+	<select id="toUnit">
+		<option value="inches">Inches</option>
+		<option value="feet">Feet</option>
+		<option value="yards">Yards</option>
+	</select></center>
+<center>
+<br>
+<br>
+<br>
+	<button onclick="convert()">Convert</button>
+	<div class="result" id="result"></div></center>
+
+
+	<script>
+		function convert() {
+			// Get the values from the input fields and dropdown menus
+			const valueToConvert = parseFloat(document.getElementById("valueToConvert").value);
+			const fromUnit = document.getElementById("fromUnit").value;
+			const toUnit = document.getElementById("toUnit").value;
+
+			// Convert the value based on the selected units
+			let result;
+			if (fromUnit === "inches" && toUnit === "feet") {
+				result = valueToConvert / 12;
+			} else if (fromUnit === "inches" && toUnit === "yards") {
+				result = valueToConvert / 36;
+			} else if (fromUnit === "feet" && toUnit === "inches") {
+				result = valueToConvert * 12;
+			} else if (fromUnit === "feet" && toUnit === "yards") {
+				result = valueToConvert / 3;
+			} else if (fromUnit === "yards" && toUnit === "inches") {
+				result = valueToConvert * 36;
+			} else if (fromUnit === "yards" && toUnit === "feet") {
+				result = valueToConvert * 3;
+			} else {
+				result = valueToConvert;
+			}
+
+			// Display the result on the page
+			document.getElementById("result").innerHTML = `${valueToConvert} ${fromUnit} = ${result} ${toUnit}`;
+		}
+	</script>
+</body>
+</html>
